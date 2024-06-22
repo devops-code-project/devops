@@ -1,16 +1,19 @@
+# Paso 2: Construir la imagen de Docker
 docker build -t jenkins .
 
+# Paso 3: Cambiar permisos en el volumen (opcional)
 docker run --rm -v jenkins_home:/var/jenkins_home alpine chown -R 1000:1000 /var/jenkins_home
 
-docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --privileged -v /var/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins
+# Paso 4: Ejecutar el contenedor de Jenkins
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --privileged -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins
 
+# Paso 5: Obtener el ID del contenedor de Jenkins
+docker ps
 
-docker exec -u jenkins -it jenkins /bin/bash
-docker --version
-docker-compose --version
+# Paso 5: Acceder al contenedor como root
+docker exec -it --user root <container_id> bash
 
-docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+# Paso 6: Obtener la clave de administrador
+cat /var/jenkins_home/secrets/initialAdminPassword
 
-Esto imprimirá la contraseña inicial de administrador en la terminal.
-
-`711529989c284a9ea0559adc38f57641`
+Clave: `1952839a0f10450eb9cf0b1662967b5f`
