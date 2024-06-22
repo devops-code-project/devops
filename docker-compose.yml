@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  serve-mysql:
+    image: mysql:latest
+    container_name: serve-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abcd1234
+    ports:
+      - "3306:3306"
+    networks:
+      - network_local_server
+
+  serve-postgres:
+    image: postgres:latest
+    container_name: serve-postgres
+    environment:
+      POSTGRES_PASSWORD: abcd1234
+    ports:
+      - "5432:5432"
+    networks:
+      - network_local_server
+
+  serve-sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: serve-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "abcd1234!"
+    ports:
+      - "1433:1433"
+    networks:
+      - network_local_server
+
+  # gastro-manager:
+  #   image: ${CONTAINER_IMAGE}
+  #   container_name: gastro-manager
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:  
+  #     - "8001:9000"
+  #   networks:
+  #     - network_local_server
+
+networks:
+  network_local_server:
+    external: true
