@@ -11,9 +11,33 @@ docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --privileged -v jenkins
 docker ps
 
 # Paso 5: Acceder al contenedor como root
-docker exec -it --user root <container_id> bash
+docker exec -it --user root jenkins bash
 
 # Paso 6: Obtener la clave de administrador
 cat /var/jenkins_home/secrets/initialAdminPassword
 
-Clave: `1952839a0f10450eb9cf0b1662967b5f`
+Clave: `47630032ad07478d980e96047c0c8af9`
+
+
+
+#En caso de requeir cambiarlo manualmente el acceso a sudo para jenkins
+
+# Reiniciar el contenedor
+docker ps
+docker restart jenkins
+
+# Acceder al contenedor como root y editar sudoers manualmente
+docker exec -it --user root jenkins bash
+nano /etc/sudoers
+
+# Dentro de nano, agregar al final del archivo:
+jenkins ALL=(ALL) NOPASSWD: ALL
+
+# Guardar y salir de nano:
+# Presionar Ctrl + X
+# Presionar Y para confirmar que deseas guardar los cambios
+# Presionar Enter para confirmar el nombre del archivo
+
+# Reiniciar el contenedor
+docker ps
+docker restart jenkins

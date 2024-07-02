@@ -20,6 +20,9 @@ RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-c
 # Agregar el usuario jenkins al grupo docker
 RUN usermod -aG docker jenkins
 
+# Configurar sudo para no pedir contraseña al usuario jenkins
+RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 # Volver a cambiar al usuario Jenkins
 USER jenkins
 
