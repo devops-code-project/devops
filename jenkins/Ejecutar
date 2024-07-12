@@ -16,7 +16,7 @@ docker exec -it --user root jenkins bash
 # Paso 6: Obtener la clave de administrador
 cat /var/jenkins_home/secrets/initialAdminPassword
 
-Clave: `47630032ad07478d980e96047c0c8af9`
+Clave: `380a8895f54243449dd9046b4d8dbdbe`
 
 
 
