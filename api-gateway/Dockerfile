@@ -15,6 +15,9 @@ RUN luarocks install lua-resty-openidc
 # Copiar el archivo de configuración de NGINX al contenedor
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
+# Copiar el archivo de clave secreta JWT al contenedor
+COPY jwt.secret /etc/nginx/conf.d/jwt.secret
+
 EXPOSE 9000
 
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
