@@ -1,0 +1,42 @@
+_format_version: "2.1"
+
+consumers:
+  - username: user1
+    custom_id: "12345"
+    tags:
+      - development
+      - auth-service
+    jwt_secrets:
+      - key: com.corhuila.security
+        secret: roITo2yN5V8W6RbcVJ0GvjKjFbfNgs2DRirmwdpbBTQ48mSudfltuMGxmUCIjYZOIUeBSZqMUcdNRXhYgY8w==
+
+services:
+  - name: backend_security
+    url: http://backend-security:9000
+    routes:
+      - name: security-route-login
+        paths:
+          - /access
+        methods:
+          - POST
+        strip_path: true
+      - name: security-route-others
+        paths:
+          - /security
+        strip_path: true
+
+  - name: backend_ubication
+    url: http://backend-ubication:9000
+    routes:
+      - name: ubication-route
+        paths:
+          - /ubication
+        strip_path: true
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              secret_is_base64: true
+              run_on_preflight: true
+              claims_to_verify:
+                - exp

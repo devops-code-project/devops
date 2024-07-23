@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  network_local_server:
+    external: true
+
+services:
+  kong:
+    container_name: kong
+    build: .
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: "/usr/local/kong/declarative/kong.yml"
+    ports:
+      - "9000:9000"
+      - "8001:8001"
+    networks:
+      - network_local_server
+
+  kong-migration:
+    container_name: kong-migration
+    image: kong:latest
+    command: kong migrations bootstrap
+    networks:
+      - network_local_server

@@ -1,0 +1,9 @@
+http:
+  middlewares:
+    jwt-auth:
+      plugin:
+        jwt:
+          secret: "roITo2yN5V8W6RbcVJ0GvjKjFbfNgs2DRirmwdpbBTQ48mSudfltuMGxmUCIjYZOIUeBSZqMUcdNRXhYgY8w=="
+          algorithm: "HS384"
+          claims_to_verify:
+            - "exp"
