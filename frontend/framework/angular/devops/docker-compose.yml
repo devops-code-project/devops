@@ -1,0 +1,14 @@
+version: '3'  
+services:
+  spa-frontend:
+    image: ${CONTAINER_IMAGE}
+    container_name: spa-frontend
+    build: 
+      context: ../
+    ports:  
+    - "8000:80"
+    networks:
+    - network_coder_team
+networks:
+  network_coder_team:
+     external: true
