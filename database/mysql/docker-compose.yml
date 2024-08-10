@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  mysql:
     container_name: serve-mysql
     build:
       context: .
@@ -20,6 +20,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    labels:
+      - com.corhuila.group=databases
 
 volumes:
   mysql_data:

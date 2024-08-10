@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  postgres:
     container_name: serve-postgres
     build:
       context: .
@@ -21,6 +21,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    labels:
+      - com.corhuila.group=databases
 
 volumes:
   postgres_data:

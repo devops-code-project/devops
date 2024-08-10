@@ -20,10 +20,6 @@ services:
         methods:
           - POST
         strip_path: true
-      - name: security-route-others
-        paths:
-          - /security
-        strip_path: true
 
   - name: backend_ubication
     url: http://backend-ubication:9000
@@ -32,14 +28,3 @@ services:
         paths:
           - /ubication
         strip_path: true
-        plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              run_on_preflight: true
-              claims_to_verify:
-                - exp
-              header_names:
-                - authorization
-              uri_param_names:
-                - jwt
