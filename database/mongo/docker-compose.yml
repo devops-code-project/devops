@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  mongodb:
-    container_name: serve-mongodb
+  mongo:
+    container_name: serve-mongo
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,8 +14,8 @@ services:
     networks:
       - network_local_server
     volumes:
-      - mongodb_data:/data/db
-      - "/home/ubuntu/db_backups:/backups/mongodb"
+      - mongo_data:/data/db
+      - "/home/ubuntu/db_backups:/backups/mongo"
     healthcheck:
       test: ["CMD-SHELL", "mongo --eval 'db.runCommand({ ping: 1 })'"]
       interval: 30s
@@ -26,7 +26,7 @@ services:
 
 
 volumes:
-  mongodb_data:
+  mongo_data:
     driver: local
 
 networks:

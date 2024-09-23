@@ -1,3 +1,9 @@
+# Eliminar todo: 
+`
+docker system prune -a --volumes
+`
+
+
 # Crear red: 
 `
 docker network create network_local_server
