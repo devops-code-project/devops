@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mysql:
-    container_name: serve-mysql
+    container_name: serve-analisis
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3309:3306"
     networks:
       - network_local_server
     volumes:
